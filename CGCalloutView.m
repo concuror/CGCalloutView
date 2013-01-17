@@ -142,12 +142,12 @@ NSTimeInterval kCGCalloutViewRepositionDelayForUIScrollView = 1.0 / 3.0;
     // calculate how much non-negotiable space we need to reserve for margin and accessories
     CGFloat margin = self.titleMarginLeft + self.titleMarginRight;
     
-    // how much room is left for text?
-    CGFloat availableWidthForText = size.width - margin;
-    
-    // no room for text? then we'll have to squeeze into the given size somehow.
-    if (availableWidthForText < 0)
-        availableWidthForText = 0;
+//    // how much room is left for text?
+//    CGFloat availableWidthForText = size.width - margin;
+//    
+//    // no room for text? then we'll have to squeeze into the given size somehow.
+//    if (availableWidthForText < 0)
+//        availableWidthForText = 0;
     
     CGSize preferredTitleSize = self.titleViewOrDefault.contentSize;
     CGSize preferredSubtitleSize = self.subtitleViewOrDefault.contentSize;
@@ -171,6 +171,8 @@ NSTimeInterval kCGCalloutViewRepositionDelayForUIScrollView = 1.0 / 3.0;
     CGRect constrainedRect = constrainedNode.boundingBox;
     constrainedRect.origin = ccp(constrainedRect.origin.x - constrainedNode.boundingBox.size.width / 2, constrainedRect.origin.y + constrainedNode.boundingBox.size.height / 2);
     constrainedRect.origin = [node convertToNodeSpace:[constrainedNode convertToWorldSpace:constrainedRect.origin]];
+    
+    self.anchorPoint = ccp(0.5f, 0.5f);
     
     [self rebuildSubviews];
     
